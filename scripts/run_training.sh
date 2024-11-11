@@ -138,7 +138,7 @@ for i in "${configs_1[@]}"; do
 		echo "# run:    ${j}" >>run_${j}_rprop.log
 		echo "# training algorithm: RPROP"
 
-		./train_1_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${i} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann >>run_${j}_rprop.log
+		./train_1_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${i} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann | tee -a run_${j}_rprop.log | grep "Epoch" | awk '{print "Epoch " $2 ": Error rate = " $4}' >> run_${j}_rprop.log
 
 		for ((k = 1; k <= ${MAX_RERUN}; k++)); do
 			mkdir rerun_${k}
@@ -147,7 +147,7 @@ for i in "${configs_1[@]}"; do
 			ln -s ../aggregated_train.fann
 			ln -s ../aggregated_test.fann
 			ln -s ../aggregated_sample.fann
-			./train_1_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${i} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann >>../run_${j}_rprop.log
+			./train_1_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${i} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann | tee -a run_${j}_rprop.log | grep "Epoch" | awk '{print "Epoch " $2 ": Error rate = " $4}' >> ../run_${j}_rprop.log
 			cd ..
 		done
 		echo "***********************************************"
@@ -189,7 +189,7 @@ if [ ${hidden_layers} == "4" ]; then
 			echo "# training algorithm: RPROP"
 
 			echo "./train_2_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${firstIndex} ${secondIndex} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann >> run_${j}_rprop.log"
-			./train_2_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${firstIndex} ${secondIndex} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann >>run_${j}_rprop.log
+			./train_2_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${firstIndex} ${secondIndex} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann | tee -a run_${j}_rprop.log | grep "Epoch" | awk '{print "Epoch " $2 ": Error rate = " $4}' >> run_${j}_rprop.log
 
 			for ((k = 1; k <= ${MAX_RERUN}; k++)); do
 				mkdir rerun_${k}
@@ -198,7 +198,7 @@ if [ ${hidden_layers} == "4" ]; then
 				ln -s ../aggregated_train.fann
 				ln -s ../aggregated_test.fann
 				ln -s ../aggregated_sample.fann
-				./train_2_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${firstIndex} ${secondIndex} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann >>../run_${j}_rprop.log
+				./train_2_hidden_layers_rprop ${bench_name} ${epochs} aggregated_train.fann ${input_neurons} ${firstIndex} ${secondIndex} ${output_neurons} ${learning_rate} ${outputAcctivation} aggregated_test.fann | tee -a run_${j}_rprop.log | grep "Epoch" | awk '{print "Epoch " $2 ": Error rate = " $4}' >> ../run_${j}_rprop.log
 				cd ..
 			done
 			echo "***********************************************"
