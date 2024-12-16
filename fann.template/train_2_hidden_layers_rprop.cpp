@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 	std::string benchName						= argv[1] ;
 	unsigned int max_epochs      				= atoi(argv[2]) ;
 	double 		 desired_error					= 0.000001 ;
-	const unsigned int epochs_between_reports	= 200 ;
+	const unsigned int epochs_between_reports	= 20 ;
 
 	std::string trainFileName 	= argv[3];
 	std::string testFileName    = argv[10];

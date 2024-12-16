@@ -18,7 +18,7 @@ def png2rgb(file):
 
 def rgb2png(img, file):
     f = open(file, "wb")
-    pngWriter = png.Writer(img[0], img[1])
+    pngWriter = png.Writer(img[0], img[1], greyscale = False)
     pngWriter.write(f, img[2])
     f.close()
 

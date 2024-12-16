@@ -17,8 +17,8 @@ def main():
     args = {}
     print("------------------ Compiler Parameters ------------------")
     args["learning_rate"] = pyip.inputFloat(
-        "Learning rate [0.1-1.0]: ", min=0.1, max=1.0
-    )
+        "Learning rate [0.01-1.0]: ", min=0.01, max=1.0
+    ) # updated the minimum learning rate as the one used in the research paper is 0.01
     args["epoch_number"] = pyip.inputInt("Epoch number [1-10000]: ", min=1, max=10000)
     args["sampling_rate"] = pyip.inputFloat(
         "Sampling rate [0.1-1.0]: ", min=0.1, max=1.0
